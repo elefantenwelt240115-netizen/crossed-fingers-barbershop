@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/images/cf-icon-black.png",
+    icon: "/icon.svg",
   },
 };
 

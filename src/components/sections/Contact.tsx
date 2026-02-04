@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { ADDRESS, CONTACT, OPENING_HOURS, REVIEWS } from "@/lib/constants";
@@ -147,35 +148,46 @@ export default function Contact() {
 
             {/* Reviews */}
             <ScrollReveal delay={0.3}>
-              <div className="border border-white/10 p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex items-center gap-1">
+              <div className="border border-brand-gold/20 bg-white/[0.03] p-8">
+                {/* Rating header */}
+                <div className="flex flex-col items-center text-center mb-6">
+                  <div className="flex items-center gap-2 mb-3">
                     {[...Array(5)].map((_, i) => (
-                      <svg
+                      <Image
                         key={i}
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="#D4A843"
-                      >
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                      </svg>
+                        src="/images/cf-icon-white.svg"
+                        alt=""
+                        width={20}
+                        height={12}
+                        className="w-5 h-auto opacity-80"
+                        style={{ filter: "brightness(0) saturate(100%) invert(72%) sepia(30%) saturate(700%) hue-rotate(6deg) brightness(92%) contrast(85%)" }}
+                      />
                     ))}
                   </div>
-                  <span className="font-heading text-lg font-bold text-brand-gold">
-                    {REVIEWS.rating}
-                  </span>
-                  <span className="font-accent text-sm text-white/50 tracking-wider">
-                    ({REVIEWS.count} Google Reviews)
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-heading text-3xl font-bold text-brand-gold">
+                      {REVIEWS.rating}
+                    </span>
+                    <span className="font-accent text-sm text-white/40 uppercase tracking-[0.15em]">
+                      / 5.0
+                    </span>
+                  </div>
+                  <span className="font-accent text-xs text-white/40 uppercase tracking-[0.2em] mt-1">
+                    {REVIEWS.count} Google Reviews
                   </span>
                 </div>
-                <div className="space-y-4">
+
+                {/* Divider */}
+                <div className="w-12 h-[1px] bg-brand-gold/30 mx-auto mb-6" />
+
+                {/* Review quotes */}
+                <div className="space-y-5">
                   {REVIEWS.highlights.map((review, i) => (
-                    <blockquote key={i} className="border-l-2 border-brand-gold/40 pl-4">
+                    <blockquote key={i} className="border-l-2 border-brand-gold/30 pl-4">
                       <p className="font-body text-sm text-white/70 italic leading-relaxed">
                         &ldquo;{review.text}&rdquo;
                       </p>
-                      <cite className="font-accent text-xs text-white/40 not-italic mt-1 block uppercase tracking-wider">
+                      <cite className="font-accent text-xs text-white/40 not-italic mt-2 block uppercase tracking-[0.15em]">
                         &mdash; {review.author}
                       </cite>
                     </blockquote>
