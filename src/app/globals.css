@@ -1,26 +1,65 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand-black: #14000A;
+  --color-brand-navy: #0F1A3E;
+  --color-brand-blush: #FDEAEA;
+  --color-brand-cream: #FDF6EC;
+  --color-brand-gold: #D4A843;
+  --color-brand-red: #8B2500;
+
+  --font-heading: var(--font-oswald);
+  --font-body: var(--font-barlow);
+  --font-accent: var(--font-barlow-condensed);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-brand-cream);
+  color: var(--color-brand-black);
+  font-family: var(--font-body), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-brand-navy);
+  color: #fff;
+}
+
+.pinstripe-bg {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 11px,
+    rgba(20, 0, 10, 0.04) 11px,
+    rgba(20, 0, 10, 0.04) 12px
+  );
+}
+
+.checkered-pattern {
+  background-image: repeating-conic-gradient(
+    var(--color-brand-black) 0% 25%,
+    transparent 0% 50%
+  );
+  background-size: 16px 16px;
+}
+
+.dotted-leader {
+  flex: 1;
+  border-bottom: 2px dotted rgba(20, 0, 10, 0.3);
+  margin: 0 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.map-grayscale {
+  filter: grayscale(1) contrast(1.1);
+  transition: filter 0.4s ease;
+}
+.map-grayscale:hover {
+  filter: grayscale(0);
 }
