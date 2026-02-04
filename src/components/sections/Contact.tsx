@@ -2,7 +2,7 @@
 
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { ADDRESS, CONTACT } from "@/lib/constants";
+import { ADDRESS, CONTACT, OPENING_HOURS, REVIEWS } from "@/lib/constants";
 
 export default function Contact() {
   return (
@@ -11,7 +11,7 @@ export default function Contact() {
         <SectionHeading title="Find Us" light />
 
         <div className="grid md:grid-cols-2 gap-12 md:gap-16">
-          {/* Info */}
+          {/* Info Column */}
           <ScrollReveal>
             <div className="space-y-8">
               {/* Address */}
@@ -41,6 +41,32 @@ export default function Contact() {
                 </a>
               </div>
 
+              {/* Opening Hours */}
+              <div>
+                <h3 className="font-accent text-sm uppercase tracking-[0.2em] text-white/50 mb-3">
+                  Opening Hours
+                </h3>
+                <div className="space-y-1.5">
+                  {OPENING_HOURS.map((item) => (
+                    <div
+                      key={item.day}
+                      className="flex items-center justify-between max-w-xs"
+                    >
+                      <span
+                        className={`font-body text-sm ${item.open ? "text-white/80" : "text-white/40"}`}
+                      >
+                        {item.day}
+                      </span>
+                      <span
+                        className={`font-accent text-sm tracking-wider ${item.open ? "text-white/80" : "text-white/40"}`}
+                      >
+                        {item.hours}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Social */}
               <div>
                 <h3 className="font-accent text-sm uppercase tracking-[0.2em] text-white/50 mb-4">
@@ -51,7 +77,7 @@ export default function Contact() {
                     href={`https://instagram.com/${CONTACT.instagram}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white/70 hover:text-white transition-colors group"
+                    className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
                   >
                     <svg
                       width="20"
@@ -65,17 +91,23 @@ export default function Contact() {
                     >
                       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                       <circle cx="12" cy="12" r="5" />
-                      <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+                      <circle
+                        cx="17.5"
+                        cy="6.5"
+                        r="1.5"
+                        fill="currentColor"
+                        stroke="none"
+                      />
                     </svg>
                     <span className="font-accent text-sm uppercase tracking-wider">
-                      Instagram
+                      @{CONTACT.instagram}
                     </span>
                   </a>
                   <a
                     href={`https://wa.me/${CONTACT.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white/70 hover:text-white transition-colors group"
+                    className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
                   >
                     <svg
                       width="20"
@@ -94,22 +126,64 @@ export default function Contact() {
             </div>
           </ScrollReveal>
 
-          {/* Map */}
-          <ScrollReveal delay={0.2}>
-            <div className="aspect-square md:aspect-[4/3] w-full overflow-hidden border border-white/10">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.5!2d32.4236!3d34.7584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDQ1JzMwLjIiTiAzMsKwMjUnMjUuMCJF!5e0!3m2!1sen!2scy!4v1"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Crossed Fingers Barbershop Location"
-                className="map-grayscale w-full h-full"
-              />
-            </div>
-          </ScrollReveal>
+          {/* Right Column: Map + Reviews */}
+          <div className="space-y-8">
+            {/* Map */}
+            <ScrollReveal delay={0.2}>
+              <div className="aspect-video w-full overflow-hidden border border-white/10">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.5!2d32.4236!3d34.7584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDQ1JzMwLjIiTiAzMsKwMjUnMjUuMCJF!5e0!3m2!1sen!2scy!4v1"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Crossed Fingers Barbershop Location"
+                  className="map-grayscale w-full h-full"
+                />
+              </div>
+            </ScrollReveal>
+
+            {/* Reviews */}
+            <ScrollReveal delay={0.3}>
+              <div className="border border-white/10 p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <svg
+                        key={i}
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="#D4A843"
+                      >
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="font-heading text-lg font-bold text-brand-gold">
+                    {REVIEWS.rating}
+                  </span>
+                  <span className="font-accent text-sm text-white/50 tracking-wider">
+                    ({REVIEWS.count} Google Reviews)
+                  </span>
+                </div>
+                <div className="space-y-4">
+                  {REVIEWS.highlights.map((review, i) => (
+                    <blockquote key={i} className="border-l-2 border-brand-gold/40 pl-4">
+                      <p className="font-body text-sm text-white/70 italic leading-relaxed">
+                        &ldquo;{review.text}&rdquo;
+                      </p>
+                      <cite className="font-accent text-xs text-white/40 not-italic mt-1 block uppercase tracking-wider">
+                        &mdash; {review.author}
+                      </cite>
+                    </blockquote>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </div>
     </section>
