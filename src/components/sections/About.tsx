@@ -15,14 +15,13 @@ export default function About() {
           {/* Image */}
           <ScrollReveal>
             <div className="relative">
-              <div className="aspect-[4/5] bg-brand-navy/10 flex items-center justify-center overflow-hidden">
-                {/* Platzhalter -- ersetze mit echtem Foto */}
+              <div className="aspect-[4/5] bg-brand-navy/10 overflow-hidden">
                 <Image
-                  src="/images/cf-icon-black.svg"
-                  alt="Crossed Fingers Barbershop"
-                  width={200}
-                  height={122}
-                  className="w-40 h-auto opacity-20"
+                  src="/images/profile.jpeg"
+                  alt="Jan - Barber at Crossed Fingers Barbershop"
+                  width={600}
+                  height={750}
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               {/* Decorative frame */}
